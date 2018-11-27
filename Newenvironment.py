@@ -751,10 +751,12 @@ class newenvironment():
                 break
         time.sleep(5)
         self.new_package = re.findall('(.*?).zip', os.popen('adb -s %s shell ls /sdcard/boxbackup' % self.deviceid).read().strip('\n'))[0]
+        logging.info(u'%s-环境包:%s.zip'%(self.deviceid,self.new_package))
         self.xr_wechat(wxid=wxid, cloudCode = self.new_package + '.zip')
         logging.info(self.deviceid + u'-注册数据已写入文件')
         os.popen(
             'start adb -s %s pull /sdcard/boxbackup/%s.zip package/%s/%s.zip' % (self.deviceid, self.new_package,self.deviceid,self.new_package))
+        logging.info(self.deviceid + u'-正在传输环境包')
         while True:
             try:
                 f = zipfile.ZipFile("package/%s/%s.zip" % (self.deviceid, self.new_package), 'r')
@@ -762,6 +764,7 @@ class newenvironment():
                     f.extract(file, "package/%s/0" % self.deviceid)
                 break
             except:pass
+        logging.info(self.deviceid + u'-环境包传输完毕')
         time.sleep(2)
         file_data = open('package/%s/0/0/hook/data.json' % self.deviceid, 'r').read()
         self.CPU_ABI = json.loads(file_data)['CPU_ABI']

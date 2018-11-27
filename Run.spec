@@ -4,7 +4,7 @@ block_cipher = None
 
 
 a = Analysis(['Run.py'],
-             pathex=['D:\\saas_6.7.3'],
+             pathex=['D:\\sandbox_appium'],
              binaries=[],
              datas=[],
              hiddenimports=[],
