@@ -421,9 +421,9 @@ class newenvironment():
                     self.ph.grsr4_lh(self.phonenumber[1])
                 os.system('adb -s %s logcat -c -b main -b events -b radio -b system' % self.deviceid)
                 logging.info(u'%s-日志清除完毕' % self.deviceid)
-                #os.system('adb -s %s shell reboot' % self.deviceid)
-                #logging.info(u'%s-正在重启手机请稍等' % self.deviceid)
-                #self.Judgment_Devices()
+                os.system('adb -s %s shell reboot' % self.deviceid)
+                logging.info(u'%s-正在重启手机请稍等' % self.deviceid)
+                self.Judgment_Devices()
                 self.driver.quit()
             else:
                 self.Submission_Task()
@@ -811,9 +811,9 @@ class newenvironment():
         os.popen('adb -s %s rm -rf /sdcard/boxbackup' % self.deviceid)
         os.system('adb -s %s logcat -c -b main -b events -b radio -b system' % self.deviceid)
         logging.info(u'%s-日志清除完毕' % self.deviceid)
-        #os.system('adb -s %s shell reboot'%self.deviceid)
-        #logging.info(u'%s-正在重启手机请稍等'%self.deviceid)
-        #self.Judgment_Devices()
+        os.system('adb -s %s shell reboot'%self.deviceid)
+        logging.info(u'%s-正在重启手机请稍等'%self.deviceid)
+        self.Judgment_Devices()
 
 
     def save_wechat_data(self):
@@ -864,6 +864,11 @@ class newenvironment():
         except:
             traceback.print_exc()
             logging.info(self.deviceid + u'-账号注册失败')
+            os.system('adb -s %s logcat -c -b main -b events -b radio -b system' % self.deviceid)
+            logging.info(u'%s-日志清除完毕' % self.deviceid)
+            os.system('adb -s %s shell reboot' % self.deviceid)
+            logging.info(u'%s-正在重启手机请稍等' % self.deviceid)
+            self.Judgment_Devices()
 
     def new_zhpyq(self):
         try:
@@ -874,6 +879,11 @@ class newenvironment():
         except:
             traceback.print_exc()
             logging.info(self.deviceid + u'-账号注册失败')
+            os.system('adb -s %s logcat -c -b main -b events -b radio -b system' % self.deviceid)
+            logging.info(u'%s-日志清除完毕' % self.deviceid)
+            os.system('adb -s %s shell reboot' % self.deviceid)
+            logging.info(u'%s-正在重启手机请稍等' % self.deviceid)
+            self.Judgment_Devices()
 
     def gw_zc_t62_1280(self):
         pass

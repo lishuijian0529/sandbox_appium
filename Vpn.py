@@ -28,8 +28,7 @@ class vpn():
                 if u"(已连接)" == pd:
                     logging.info(self.deviceid+u"-VPN已成功连接")
                     try:
-                        self.ip = re.findall('"cip": "([0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3})"', os.popen(
-                            'adb -s ' + self.deviceid + ' shell curl "http://pv.sohu.com/cityjson"').read())[0]
+                        self.ip = re.findall('"cip": "([0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3})"', os.popen('adb -s ' + self.deviceid + ' shell curl "http://pv.sohu.com/cityjson"').read())[0]
                     except:
                         logging.info(self.deviceid+u'网络异常 ,请查看手机是否可以正常联网')
                     logging.info(self.deviceid + u'-' + self.ip)
