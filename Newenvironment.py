@@ -419,6 +419,11 @@ class newenvironment():
                     self.ph.grsr3_lh(self.phonenumber[1])
                 if self.phmode == '13.国内私人4'.decode('utf-8'):
                     self.ph.grsr4_lh(self.phonenumber[1])
+                os.system('adb -s %s logcat -c -b main -b events -b radio -b system' % self.deviceid)
+                logging.info(u'%s-日志清除完毕' % self.deviceid)
+                #os.system('adb -s %s shell reboot' % self.deviceid)
+                #logging.info(u'%s-正在重启手机请稍等' % self.deviceid)
+                #self.Judgment_Devices()
                 self.driver.quit()
             else:
                 self.Submission_Task()
@@ -722,6 +727,7 @@ class newenvironment():
         time.sleep(3)
 
     def sandbox_save(self,wxid):
+        #self.ph.hj_success(TokenYZ.pdtoken(), self.phonenumber[1])
         os.system('adb -s ' + self.deviceid + ' shell am force-stop org.wuji')
         self.driver.keyevent(4)
         #os.popen('adb -s %s shell am start -n com.dobe.sandbox/.home.Main2Activity'%self.deviceid)
@@ -803,6 +809,12 @@ class newenvironment():
             Pack.remove_dir('package/%s/0'%self.deviceid)
         except:pass
         os.popen('adb -s %s rm -rf /sdcard/boxbackup' % self.deviceid)
+        os.system('adb -s %s logcat -c -b main -b events -b radio -b system' % self.deviceid)
+        logging.info(u'%s-日志清除完毕' % self.deviceid)
+        #os.system('adb -s %s shell reboot'%self.deviceid)
+        #logging.info(u'%s-正在重启手机请稍等'%self.deviceid)
+        #self.Judgment_Devices()
+
 
     def save_wechat_data(self):
         self.wxid = self.w.get_wxid()

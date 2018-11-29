@@ -19,7 +19,9 @@ class vpn():
         driver = Open().Phone(self.appPackage, self.appActivity, self.deviceid, self.port)
         driver.implicitly_wait(60)
         while True:
-            driver.find_element_by_id('it.colucciweb.sstpvpnclient:id/start_stop').click()  # 开启VPN
+            if driver.find_elements_by_id('it.colucciweb.sstpvpnclient:id/start_stop') !=[]:
+                os.system('adb -s %s shell input tap 1006 323'%self.deviceid)
+            #driver.find_element_by_id('it.colucciweb.sstpvpnclient:id/start_stop').click()  # 开启VPN
             time.sleep(int(t))
             pd=driver.find_element_by_id('it.colucciweb.sstpvpnclient:id/details1').get_attribute(("text"))
             try:
