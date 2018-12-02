@@ -99,7 +99,10 @@ class PhoneNumber():
                     logging.info(self.deviceid+u'-获取到手机号码:'+re.findall('"phone":"(.*?)"',result)[0])
                     ph = re.findall('"phone":"(.*?)"', result)[0]
                     cardid = re.findall('"id":(.*?),', result)[0]
-                    return ph, cardid
+                    if ph[:2] == '17':
+                        logging.info(u'%s-屏蔽17号段' % self.deviceid)
+                    else:
+                        return ph, cardid
                 except:
                     logging.info(self.deviceid+u'-获取不到手机号码')
                     time.sleep(random.randint(1, 10))
